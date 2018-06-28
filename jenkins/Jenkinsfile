@@ -15,7 +15,7 @@ pipeline {
   //publish to npm repo
   stage('publish') {
      steps {
-      sh 'env'
+      sh 'source ~/.bash_profile'
       sh 'npm publish'
      }
 
