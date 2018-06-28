@@ -1,0 +1,25 @@
+pipeline {
+   agent any
+   
+   
+
+  stages {
+   stage('checkout') {
+     steps {
+       scm gthub
+     }
+
+  }
+
+
+  //publish to npm repo
+  stage('publish') {
+     steps {
+      sh 'npm publish'
+     }
+
+ }
+     
+  
+
+`
