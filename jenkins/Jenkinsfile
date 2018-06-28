@@ -6,7 +6,7 @@ pipeline {
   stages {
    stage('checkout') {
      steps {
-       scm gthub
+       checkout scm
      }
 
   }
