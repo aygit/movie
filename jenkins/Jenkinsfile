@@ -15,6 +15,7 @@ pipeline {
   //publish to npm repo
   stage('publish') {
      steps {
+      sh 'env'
       sh 'npm publish'
      }
 
