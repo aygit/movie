@@ -11,7 +11,14 @@ pipeline {
 
   }
 
-
+  
+  // do jest testing
+    stage('test') {
+      steps {
+       sh 'npm test'
+     }
+  }
+   
   //publish to npm repo
   stage('publish') {
      steps {
