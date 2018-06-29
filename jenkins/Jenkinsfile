@@ -15,7 +15,8 @@ pipeline {
   // do jest testing
     stage('test') {
       steps {
-       sh 'yarn test'
+       sh 'npm install'
+       sh 'npm test'
      }
   }
    
