@@ -14,11 +14,15 @@ pipeline {
   
   // do jest testing
     stage('test') {
+     withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
       steps {
        sh 'npm install'
-       sh 'npm test'
+       sh 'npm test -- --ci --testResultsProcessor="jest-junit"''
      }
+     junit 'jest-test-results.xml'
   }
+}
+
    
   //publish to npm repo
   stage('publish') {
