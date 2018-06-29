@@ -19,7 +19,7 @@ pipeline {
        sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
       }
     } 
-}
+
 
 
  // testing test
