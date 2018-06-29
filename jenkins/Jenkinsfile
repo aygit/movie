@@ -25,7 +25,6 @@ pipeline {
  // testing test
     stage('pubtest') {
      steps {
-    archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
     junit '*.xml' 
 
 
