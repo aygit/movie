@@ -23,8 +23,8 @@ pipeline {
 
 
  // testing test
-    post {
-     always {
+    stage('pubtest') {
+     steps {
     archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
     junit 'build/reports/**/*.xml' 
 
