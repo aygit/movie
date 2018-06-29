@@ -12,24 +12,12 @@ pipeline {
   }
 
   
-  // do jest testing
-    stage('test') {
-     withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
-      steps {
-       sh 'npm install'
-       sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
-      }
-    } 
-}
-
-
- // testing test
-    stage('testcoverage') {
-     steps {
-     junit 'jest-test-results.xml'
+stage ('tests') {
+  withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
+    sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
   }
- }    
-
+  junit 'jest-test-results.xml'
+}
    
   //publish to npm repo
   stage('publish') {
