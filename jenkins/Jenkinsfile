@@ -23,9 +23,12 @@ pipeline {
 
 
  // testing test
-    stage('testcoverage') {
-     steps {
-     junit 'jest-test-results.xml'
+    post {
+     always {
+    archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+    junit 'build/reports/**/*.xml' 
+
+
   }
  }    
 
