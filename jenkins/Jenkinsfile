@@ -1,7 +1,7 @@
 pipeline {
    agent any
-   
-   
+
+
 
   stages {
    stage('checkout') {
@@ -11,27 +11,38 @@ pipeline {
 
   }
 
-  
+
   // do jest testing
     stage('test') {
       steps {
        sh 'npm install'
        sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
       }
-    } 
+    }
 
 
 
  // testing test
     stage('pubtest') {
      steps {
-    junit 'reports/*.xml' 
+    junit 'reports/*.xml'
 
 
   }
- }    
+ }
 
 
+ //publish to npm repo
+ stage('publish') {
+    steps {
+     sh 'source ~/.profile'
+     sh 'source ~/.bash_profile'
+     sh 'npm publish'
+    }
+
+ }
+
+}
 post {
         always {
             archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
@@ -39,17 +50,9 @@ post {
         }
     }
 
-   
-  //publish to npm repo
-  stage('publish') {
-     steps {
-      sh 'source ~/.profile'
-      sh 'source ~/.bash_profile'
-      sh 'npm publish'
-     }
+
+
 
  }
-     
- } 
 
 }
