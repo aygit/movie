@@ -25,11 +25,19 @@ pipeline {
  // testing test
     stage('pubtest') {
      steps {
-    junit '*.xml' 
+    junit 'reports/*.xml' 
 
 
   }
  }    
+
+
+post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
+        }
+    }
 
    
   //publish to npm repo
