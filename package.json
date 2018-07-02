@@ -5,6 +5,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "jest-jenkins-reporter": "^1.0.2",
     "react": "16.3.1",
     "react-native": "0.55.4"
   },
@@ -22,6 +23,10 @@
     "preset": "react-native",
     "testResultsProcessor": "jest-junit"
   },
+  "jest-junit": {
+     "suiteName": "jest mytesttttting",
+     "output": "reports/testreport.xml"
+     },
   "main": "index.js",
   "author": "",
   "license": "ISC",
