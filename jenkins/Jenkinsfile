@@ -33,14 +33,14 @@ pipeline {
 
 
  //publish to npm repo
- stage('publish') {
-    steps {
-     sh 'source ~/.profile'
-     sh 'source ~/.bash_profile'
-     sh 'npm publish'
-    }
+// stage('publish') {
+//    steps {
+ //    sh 'source ~/.profile'
+//     sh 'source ~/.bash_profile'
+//     sh 'npm publish'
+//    }
 
- }
+// }
 
 }
 post {
