@@ -25,6 +25,20 @@ pipeline {
     }
 
 
+     //publish coverage report
+      stage('coverage')
+       steps {
+        publishHTML (target: [
+      allowMissing: false,
+      alwaysLinkToLastBuild: false,
+      keepAll: true,
+      reportDir: 'coverage',
+      reportFiles: 'index.html',
+      reportName: "lcov-report"
+    ])
+
+    }  
+
 
  // testing test
     stage('pubtest') {
