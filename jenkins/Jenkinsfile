@@ -13,20 +13,24 @@ pipeline {
 
 
   // do jest testing
-    stage('codecoverage') {
+    stage('test') {
       steps {
        sh 'npm install'
 //       sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
        sh 'npm install jest jest-junit jest-junit-reporter'
        sh 'yarn add --dev jest-styled-components'
        sh 'npx jest test  --coverage'
-       
+       sh 'sleep 10'
        sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
       }
-     
-     post {
-        always { 
-       publishHTML (target: [
+
+
+
+     //publish coverage report
+      post {
+       always  {
+         junit 'reports/*.xml'
+        publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: true,
       keepAll: true,
@@ -35,19 +39,6 @@ pipeline {
       reportName: "code-coverage"
     ])
 
-    }
-  }
- }
-
-    
-    stage('unit test') {
-      steps {
-         sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
-        }
-     //publish coverage report
-      post {
-       always  {
-         junit 'reports/*.xml'
     }
   }
  }
