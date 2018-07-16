@@ -16,11 +16,9 @@ pipeline {
     stage('test') {
       steps {
        sh 'npm install'
-//       sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
        sh 'npm install jest jest-junit jest-junit-reporter'
        sh 'yarn add --dev jest-styled-components'
        sh 'npx jest test  --coverage'
-//       sh 'sleep 10'
        sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
       }
 
