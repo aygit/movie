@@ -22,17 +22,17 @@ pipeline {
        sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
        sh 'npx jest test  --coverage'
       }
-    
- 
+
+
     post {
        always {
            junit 'reports/*.xml'
     }
   }
 
-  
-      
-   
+
+
+
      //publish coverage report
       post {
        always  {
@@ -45,8 +45,8 @@ pipeline {
       reportName: "code-coverage"
     ])
 
-    }  
-  } 
+    }
+  }
  }
  // testing test
     stage('pubtest') {
@@ -69,11 +69,12 @@ pipeline {
 // }
 
 }
-#post {
-#        always {
-#            junit testResults: 'reports/*.xml'
-#        }
-#    }
+
+//post {
+//        always {
+//            junit testResults: 'reports/*.xml'
+//        }
+//    }
 
 
 
