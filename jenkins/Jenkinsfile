@@ -23,8 +23,14 @@ pipeline {
        sh 'npx jest test  --coverage'
       }
     }
-
-
+ 
+    post {
+       always {
+           junit 'reports/*.xml'
+    }
+  }
+     
+   
      //publish coverage report
       stage('coverage') {
        steps {
