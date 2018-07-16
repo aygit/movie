@@ -41,13 +41,13 @@ pipeline {
   }
  }
  // testing test
-    stage('pubtest') {
-     steps {
-    junit 'reports/*.xml'
+//    stage('pubtest') {
+//     steps {
+//    junit 'reports/*.xml'
 
 
-  }
- }
+//  }
+// }
 
 
  //publish to npm repo
