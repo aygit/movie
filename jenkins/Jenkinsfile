@@ -31,7 +31,7 @@ pipeline {
          junit 'reports/*.xml'
         publishHTML (target: [
       allowMissing: false,
-      alwaysLinkToLastBuild: false,
+      alwaysLinkToLastBuild: true,
       keepAll: true,
       reportDir: 'coverage/lcov-report',
       reportFiles: 'index.html',
