@@ -30,12 +30,12 @@ pipeline {
     }
   }
 
-  }
+  
       
    
      //publish coverage report
-      stage('coverage') {
-       steps {
+      post {
+       always  {
         publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: false,
@@ -47,7 +47,7 @@ pipeline {
 
     }  
   } 
-
+ }
  // testing test
     stage('pubtest') {
      steps {
@@ -69,11 +69,11 @@ pipeline {
 // }
 
 }
-post {
-        always {
-            junit testResults: 'reports/*.xml'
-        }
-    }
+#post {
+#        always {
+#            junit testResults: 'reports/*.xml'
+#        }
+#    }
 
 
 
