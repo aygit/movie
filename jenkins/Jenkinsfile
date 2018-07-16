@@ -24,18 +24,11 @@ pipeline {
       }
 
 
-    post {
-       always {
-           junit 'reports/*.xml'
-    }
-  }
-
-
-
 
      //publish coverage report
       post {
        always  {
+         junit 'reports/*.xml'
         publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: false,
