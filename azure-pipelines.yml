@@ -16,4 +16,4 @@ steps:
 - script: |
     npm install
     react-native run-ios
-displayName: 'react-native'
+  displayName: 'react-native'
