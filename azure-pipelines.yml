@@ -6,10 +6,14 @@
 pool:
   vmImage: 'macOS 10.13'
 
+
 steps:
-- task: Xcode@5
+- task: NodeTool@0
   inputs:
-    scheme: ''
-    sdk: 'iphoneos'
-    configuration: 'Release'
-    xcodeVersion: 'default' # Options: 8, 9, default, specifyPath
+    versionSpec: '8.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    react-native run-ios
+displayName: 'react-native'
