@@ -34,7 +34,7 @@ environment {
          steps {
              script {
 
-                docker.withRegistry(DOCKER_REGISTRY, REGISTRY_CREDENTIAL) {
+                docker.withRegistry(DOCKER_REGISTRY, 6b92377a-afe8-4263-88c4-42f36315d5b4) {
                  dockerImage.push("${env.BUILD_NUMBER}")
                  dockerImage.push("latest")
                }
