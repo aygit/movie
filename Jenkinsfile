@@ -32,7 +32,6 @@ environment {
     stage('push  to docker registry') {
          steps {
              script {
-
                 docker.withRegistry(DOCKER_REGISTRY, REGISTRY_CREDENTIAL) {
                  dockerImage.push("${env.BUILD_NUMBER}")
                  dockerImage.push("latest")
