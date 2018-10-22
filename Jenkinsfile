@@ -6,7 +6,7 @@ pipeline {
 environment {
        IMAGE = "testimage"
        DOCKER_REGISTRY = "https://hub.docker.com"
-       REGISTRY_CREDENTIAL = "5a2d152f-f848-4801-8110-219493beba83"
+       REGISTRY_CREDENTIAL = "6b92377a-afe8-4263-88c4-42f36315d5b4"
       }
 
 
@@ -33,7 +33,7 @@ environment {
          steps {
              script {
 
-                docker.withRegistry(DOCKER_REGISTRY, 6b92377a-afe8-4263-88c4-42f36315d5b4) {
+                docker.withRegistry(DOCKER_REGISTRY, REGISTRY_CREDENTIAL) {
                  dockerImage.push("${env.BUILD_NUMBER}")
                  dockerImage.push("latest")
                }
