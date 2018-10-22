@@ -4,7 +4,6 @@ pipeline {
 
 
 environment {
-       PATH = "/Users/gskdevops/.fastlane/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
        IMAGE = "testimage"
        DOCKER_REGISTRY = "https://hub.docker.com"
        REGISTRY_CREDENTIAL = "5a2d152f-f848-4801-8110-219493beba83"
