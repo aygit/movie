@@ -33,7 +33,7 @@ environment {
     stage('push  to docker registry') {
          steps {
              script {
-                withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "${DOCKER_REGISTRY}") {
+                withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: 'http://"${DOCKER_REGISTRY}"') {
                  dockerImage.push("${env.BUILD_NUMBER}")
                  dockerImage.push("latest")
                }
