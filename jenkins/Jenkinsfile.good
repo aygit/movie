@@ -1,0 +1,76 @@
+pipeline {
+   agent any
+
+
+
+  stages {
+   stage('checkout') {
+     steps {
+       checkout scm
+     }
+
+  }
+
+
+  // do jest testing
+    stage('test') {
+      steps {
+       sh 'npm install'
+//       sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
+       sh 'npm install jest jest-junit jest-junit-reporter'
+       sh 'yarn add --dev jest-styled-components'
+       sh 'npx jest test  --coverage'
+       sh 'sleep 10'
+       sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
+      }
+
+
+
+     //publish coverage report
+      post {
+       always  {
+         junit 'reports/*.xml'
+        publishHTML (target: [
+      allowMissing: false,
+      alwaysLinkToLastBuild: true,
+      keepAll: true,
+      reportDir: 'coverage/lcov-report',
+      reportFiles: 'index.html',
+      reportName: "code-coverage"
+    ])
+
+    }
+  }
+ }
+ // testing test
+    stage('pubtest') {
+     steps {
+    junit 'reports/*.xml'
+
+
+  }
+ }
+
+
+ //publish to npm repo
+// stage('publish') {
+//    steps {
+ //    sh 'source ~/.profile'
+//     sh 'source ~/.bash_profile'
+//     sh 'npm publish'
+//    }
+
+// }
+
+}
+
+//post {
+//        always {
+//            junit testResults: 'reports/*.xml'
+//        }
+//    }
+
+
+
+
+ }

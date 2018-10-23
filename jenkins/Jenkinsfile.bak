@@ -1,0 +1,46 @@
+pipeline {
+   agent any
+   
+   
+
+  stages {
+   stage('checkout') {
+     steps {
+       checkout scm
+     }
+
+  }
+
+  
+  // do jest testing
+    stage('test') {
+     withEnv(["JEST_JUNIT_OUTPUT=./jest-test-results.xml"]) {
+      steps {
+       sh 'npm install'
+       sh 'npm test -- --ci --testResultsProcessor="jest-junit"'
+      }
+    } 
+}
+
+
+ // testing test
+    stage('testcoverage') {
+     steps {
+     junit 'jest-test-results.xml'
+  }
+ }    
+
+   
+  //publish to npm repo
+  stage('publish') {
+     steps {
+      sh 'source ~/.profile'
+      sh 'source ~/.bash_profile'
+      sh 'npm publish'
+     }
+
+ }
+     
+ } 
+}
+
