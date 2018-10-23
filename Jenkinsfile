@@ -45,8 +45,8 @@ environment {
     stage('clean up') {
      steps {
 
-        sh "docker rmi ${dockerImage}"
-         sh "docker rmi ${dockerImage}:latest"
+        sh "docker rmi ${DOCKER_REGISTRY}/${IMAGE}:${ENV.BUILD_NUMBER}"
+         sh "docker rmi ${DOCKER_REGISTRY}/${IMAGE}:latest"
          }
        }
  }
