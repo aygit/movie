@@ -32,7 +32,7 @@ environment {
     stage('push  to docker registry') {
          steps {
              script {
-                withDockerRegistry(credentialsId: '617ee2e4-6f49-483e-9520-96e8c9e2752c', url: 'https://hub.docker.com') {
+                withDockerRegistry(credentialsId: '617ee2e4-6f49-483e-9520-96e8c9e2752c', url: '') {
                  dockerImage.push("${env.BUILD_NUMBER}")
                  dockerImage.push("latest")
                }
