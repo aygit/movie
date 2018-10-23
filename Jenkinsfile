@@ -6,7 +6,7 @@ pipeline {
 environment {
        IMAGE = "testimage"
        DOCKER_REGISTRY = "hub.docker.com"
-       REGISTRY_CREDENTIAL = "617ee2e4-6f49-483e-9520-96e8c9e2752c"
+       REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
       }
 
 
