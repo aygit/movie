@@ -40,6 +40,12 @@ environment {
            }
          }
         }
+ 
+
+    stage('clean up')
+     steps {
+        sh "docker rmi ${dockerImage}"
+        sh "docker rmi ${dockerImage}:latest"
 
  }
 }
