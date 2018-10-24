@@ -18,10 +18,6 @@ environment {
 
    stages {
 
-
-      properties([[$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false], pipelineTriggers([githubPush()])])
-      
-
        stage('checkout') {
         steps {
           git branch: 'master', url: 'git@github.com:aygit/movie.git'
