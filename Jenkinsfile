@@ -28,24 +28,34 @@ environment {
    stage('build docker image') {
          steps {
             script {
-               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}") --no-cache
+               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}") 
 
          }
        }
       }
 
 
-    stage('push  to docker registry') {
-         steps {
-             script {
-                withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
-                 dockerImage.push("${env.BUILD_NUMBER}")
-                 dockerImage.push("latest")
-               }
-           }
-         }
-        }
+//    stage('push  to docker registry') {
+//         steps {
+//             script {
+//                withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
+//                 dockerImage.push("${env.BUILD_NUMBER}")
+//                 dockerImage.push("latest")
+//               }
+//           }
+//         }
+//        }
  
+      
+       stage('push to registry') {
+          steps {
+              withCredentials([
+                 string(credentialsId: 'REGISTRY_PASS', variable: 'PASSWD'),
+                 string(credentialsId: 'REGISTRY_USER', variable: 'USER')
+                  ])   {
+                   sh """
+                       docker login ${REGISTRY} -u ${USER} -p ${PASSWD
+                      }
 
     stage('clean up') {
      steps {
