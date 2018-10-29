@@ -61,7 +61,7 @@ environment {
       sh '''#! /bin/bash
          echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
          '''
-          sh 'dockerImage.push("latest") '
+          sh 'docker push  ayodejiemiloju1/testimage'
 
      }
     }
