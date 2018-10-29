@@ -55,6 +55,7 @@ environment {
                   ])   {
                    sh """
                        docker login ${DOCKER_REGISTRY} -u ${USER} -p ${PASSWD}
+                       docker push dockerImage
                     """
                       }
 
