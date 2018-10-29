@@ -61,10 +61,11 @@ environment {
       sh '''#! /bin/bash
          echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
          '''
-          sh 'dockerImage.push("latest") '  
+          sh 'dockerImage.push("latest") '
 
      }
-
+    }
+  }
 
 
 
