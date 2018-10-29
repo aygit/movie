@@ -28,7 +28,7 @@ environment {
    stage('build docker image') {
          steps {
             script {
-               sh "docker build --no-cache -t ${IMAGE} ."
+               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}")
 
          }
        }
@@ -36,9 +36,7 @@ environment {
 
 
 
-
-
-     stage('push to docker registry') {
+     stage('login to the registry') {
      steps {
     withCredentials([
       [
@@ -52,16 +50,21 @@ environment {
       sh '''#! /bin/bash
          echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
          '''
-          sh "docker tag ${DOCKER_REGISTRY}/${IMAGE}:${env.BUILD_NUMBER}"
-          sh "docker tag  ${DOCKER_REGISTRY}/${IMAGE}:latest"
 
      }
     }
   }
 
+    stage('push  to docker registry') {
+         steps {
+             script {
 
-
-
+                 dockerImage.push("${env.BUILD_NUMBER}")
+                 dockerImage.push("latest")
+               }
+           }
+         }
+        }
 
 
     stage('clean up') {
