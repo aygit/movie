@@ -28,7 +28,7 @@ environment {
    stage('build docker image') {
          steps {
             script {
-               sh "docker build --no-cache -t ${IMAGE}"
+               sh "docker build --no-cache -t ${IMAGE}" .
 
          }
        }
