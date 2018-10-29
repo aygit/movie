@@ -35,26 +35,38 @@ environment {
       }
 
 
-    stage('push  to docker registry') {
-        steps {
-             script {
-               withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
-                dockerImage.push("${env.BUILD_NUMBER}")
-                dockerImage.push("latest")
-               }
-           }
-         }
-        }
+//    stage('push  to docker registry') {
+//        steps {
+//             script {
+//               withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
+//                dockerImage.push("${env.BUILD_NUMBER}")
+//                dockerImage.push("latest")
+//               }
+//           }
+//         }
+//        }
 
 
-     stage('docker logout') {
-       steps {
-          script {
-          docker logout "https://${DOCKER_REGISTRY}"
-          }
-       }
+     stage('push to docker registry') {
+     steps {
+    withCredentials([
+      [
+        $class: 'UsernamePasswordMultiBinding',
+        credentialsId: '617ee2e4-6f49-483e-9520-96e8c9e2752c',
+        usernameVariable: 'DOCKERUSER',
+        passwordVariable: 'DOCKERPASS'
+      ]
+    ]) {
+      echo 'Logging into DockerHub'
+      sh '''#! /bin/bash
+         echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
+         '''
+          sh 'dockerImage.push("latest")   
 
      }
+
+
+
 
 
     stage('clean up') {
