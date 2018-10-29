@@ -28,7 +28,7 @@ environment {
    stage('build docker image') {
          steps {
             script {
-               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}")
+               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}") --no-cache
 
          }
        }
