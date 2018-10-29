@@ -54,8 +54,11 @@ environment {
                  string(credentialsId: 'REGISTRY_USER', variable: 'USER')
                   ])   {
                    sh """
-                       docker login ${REGISTRY} -u ${USER} -p ${PASSWD
+                       docker login ${DOCKER_REGISTRY} -u ${USER} -p ${PASSWD}
                       }
+
+                    }
+                 }
 
     stage('clean up') {
      steps {
