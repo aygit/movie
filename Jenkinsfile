@@ -28,23 +28,14 @@ environment {
    stage('build docker image') {
          steps {
             script {
-               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}")
+               sh "docker build --no-cache -t ${IMAGE}"
 
          }
        }
       }
 
 
-//    stage('push  to docker registry') {
-//        steps {
-//             script {
-//               withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
-//                dockerImage.push("${env.BUILD_NUMBER}")
-//                dockerImage.push("latest")
-//               }
-//           }
-//         }
-//        }
+
 
 
      stage('push to docker registry') {
@@ -61,12 +52,14 @@ environment {
       sh '''#! /bin/bash
          echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
          '''
-          sh 'docker push  $dockerImage'
-
+          sh "docker tag ${DOCKER_REGISTRY}/${IMAGE}:${env.BUILD_NUMBER}"
+          sh "docker tag  ${DOCKER_REGISTRY}/${IMAGE}:latest"
 
      }
     }
   }
+
+
 
 
 
