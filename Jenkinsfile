@@ -35,32 +35,27 @@ environment {
       }
 
 
-//    stage('push  to docker registry') {
-//         steps {
-//             script {
-//                withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
-//                 dockerImage.push("${env.BUILD_NUMBER}")
-//                 dockerImage.push("latest")
-//               }
-//           }
-//         }
-//        }
+    stage('push  to docker registry') {
+        steps {
+             script {
+               withDockerRegistry(credentialsId: "${REGISTRY_CREDENTIAL}", url: "https://${DOCKER_REGISTRY}") {
+                dockerImage.push("${env.BUILD_NUMBER}")
+                dockerImage.push("latest")
+               }
+           }
+         }
+        }
 
 
-       stage('push to registry') {
-          steps {
-              withCredentials([
-                 string(credentialsId: 'REGISTRY_PASS', variable: 'PASSWD'),
-                 string(credentialsId: 'REGISTRY_USER', variable: 'USER')
-                  ])   {
-                   sh """
-                       docker login ${DOCKER_REGISTRY} -u ${USER} -p ${PASSWD}
-                       docker push dockerImage
-                    """
-                      }
+     stage('docker logout') {
+       steps {
+          script {
+          docker logout "https://${DOCKER_REGISTRY}"
+          }
+       }
 
-                    }
-                 }
+     }
+
 
     stage('clean up') {
      steps {
