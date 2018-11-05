@@ -24,8 +24,12 @@ environment {
         }
       }
 
-
-   stage('build docker image') {
+  
+   stage('build docker image uat') {
+        when {
+            branch 'uat'
+           }
+ 
          steps {
             script {
                dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}")
