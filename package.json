@@ -12,6 +12,7 @@
   "devDependencies": {
     "babel-jest": "23.2.0",
     "babel-preset-react-native": "4.0.0",
+    "danger": "^6.0.2",
     "jest": "^23.2.0",
     "jest-cli": "^23.2.0",
     "jest-junit": "^5.1.0",
@@ -24,9 +25,9 @@
     "testResultsProcessor": "jest-junit"
   },
   "jest-junit": {
-     "suiteName": "jest mytesttttting",
-     "output": "reports/testreport.xml"
-     },
+    "suiteName": "jest mytesttttting",
+    "output": "reports/testreport.xml"
+  },
   "main": "index.js",
   "author": "",
   "license": "ISC",

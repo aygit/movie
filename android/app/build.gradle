@@ -98,7 +98,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.movie"
+        applicationId "com.@ayodejiemiloju/movie"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

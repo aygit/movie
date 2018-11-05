@@ -1,0 +1,16 @@
+<testsuites name="jest mytesttttting" tests="1" failures="1" time="0.776">
+  <testsuite name="undefined" errors="0" failures="1" skipped="0" timestamp="2018-07-16T14:44:50" time="0.449" tests="1">
+    <testcase classname=" adds 1 + 2 to equal 3" name=" adds 1 + 2 to equal 3" time="0.007">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 103
+Received: 3
+    at Object.&lt;anonymous&gt; (/Users/ayoemiloju/Documents/ayoreact/movie/sum.test.js:4:21)
+    at Object.asyncFn (/Users/ayoemiloju/Documents/ayoreact/movie/node_modules/jest-jasmine2/build/jasmine_async.js:108:37)
+    at resolve (/Users/ayoemiloju/Documents/ayoreact/movie/node_modules/jest-jasmine2/build/queue_runner.js:56:12)
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/ayoemiloju/Documents/ayoreact/movie/node_modules/jest-jasmine2/build/queue_runner.js:43:19)
+    at promise.then (/Users/ayoemiloju/Documents/ayoreact/movie/node_modules/jest-jasmine2/build/queue_runner.js:87:41)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
