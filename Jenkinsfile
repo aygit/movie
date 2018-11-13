@@ -25,17 +25,17 @@ environment {
         }
       }
 
-        
+
 
          stage('assign environment') {
              steps {
-        
+
          script {
              if (ENVIRONMENT_NAME == 'uat')   {
                    ENV_NAME = 'uat'
                    DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else  (ENVIRONMENT_NAME == 'release') {
+                   }  else if  (ENVIRONMENT_NAME == 'release') {
                             ENV_NAME = 'release'
                    DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
@@ -43,11 +43,11 @@ environment {
                       DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
                    }
-                 }           
+                 }
                }
               }
-                 
-                   
+
+
      stage('build docker image') {
          steps {
             script {
