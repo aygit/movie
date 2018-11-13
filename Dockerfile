@@ -1,4 +1,5 @@
 # base image
+# comment
 FROM node:alpine
 
 # set working directory
