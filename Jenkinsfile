@@ -34,7 +34,7 @@ environment {
              if ( ENV_NAME == 'uat')   {
                    DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else if  (ENV_NAME == 'release') {
+                   }  else if  (ENV_NAME == 'develop') {
                    DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
                    }  else if (ENV_NAME =='master') {
