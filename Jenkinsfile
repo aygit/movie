@@ -31,15 +31,15 @@ environment {
              steps {
 
          script {
-             if (ENVIRONMENT_NAME == 'uat')   {
-                   ENV_NAME = 'uat'
+             if ( ENV_NAME == 'uat')   {
+
                    DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else if  (ENVIRONMENT_NAME == 'release') {
-                            ENV_NAME = 'release'
+                   }  else if  (ENV_NAME = 'release') {
+
                    DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else if (ENVIRONMENT_NAME == 'master') {
+                   }  else if (ENV_NAME = 'master') {
                       DOCKER_REGISTRY = 'registry.hub.docker.com'
                    REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
                    }
