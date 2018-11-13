@@ -49,7 +49,7 @@ environment {
      stage('build docker image') {
          steps {
             script {
-               dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}")
+               dockerImage = docker.build("$DOCKER_REGISTRY/${IMAGE}:${env.BUILD_NUMBER}")
 
          }
        }
