@@ -6,8 +6,9 @@ pipeline {
 environment {
          pom = 'https://registry.hub.docker.com'
           IMAGE = 'testimage'
-          DOCKER_REGISTRY = 'registry.hub.docker.com'
-          REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
+          ENV_NAME = "{env.BRANCH_NAME}"
+  //        DOCKER_REGISTRY = 'registry.hub.docker.com'
+  //        REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
       }
 
 
@@ -24,12 +25,30 @@ environment {
         }
       }
 
-  
-   stage('build docker image uat') {
-        when {
-            branch 'uat'
-           }
- 
+        
+
+         stage('assign environment') {
+             steps {
+        
+         script {
+             if (ENVIRONMENT_NAME == 'uat')   {
+                   ENV_NAME = 'uat'
+                   DOCKER_REGISTRY = 'registry.hub.docker.com'
+                   REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
+                   }  else  (ENVIRONMENT_NAME == 'release') {
+                            ENV_NAME = 'release'
+                   DOCKER_REGISTRY = 'registry.hub.docker.com'
+                   REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
+                   }  else if (ENVIRONMENT_NAME == 'master') {
+                      DOCKER_REGISTRY = 'registry.hub.docker.com'
+                   REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
+                   }
+                 }           
+               }
+              }
+                 
+                   
+     stage('build docker image') {
          steps {
             script {
                dockerImage = docker.build("ayodejiemiloju1/${IMAGE}:${env.BUILD_NUMBER}")
