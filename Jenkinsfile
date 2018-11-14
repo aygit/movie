@@ -39,7 +39,7 @@ environment {
                    }  else if  (ENV_NAME == 'develop') {
                    env.DOCKER_REGISTRY = "localhost:5000"
                    env.REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else if (ENV_NAME =='master') {
+                   }  else  (ENV_NAME =='master') {
                       env.DOCKER_REGISTRY = 'registry.hub.docker.com'
                    env.REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
                    }
