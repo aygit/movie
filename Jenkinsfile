@@ -7,6 +7,8 @@ environment {
          pom = 'https://registry.hub.docker.com'
           IMAGE = 'testimage'
           ENV_NAME = "{env.BRANCH_NAME}"
+          DOCKER_REGISTRY = 'DEFAULT'
+          REGISTRY_CREDENTIAL = 'DEFAULT'
   //        DOCKER_REGISTRY = 'registry.hub.docker.com'
   //        REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
       }
