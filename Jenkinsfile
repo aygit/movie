@@ -40,7 +40,7 @@ environment {
                 dockerImage = docker.build("$docker_registry/${IMAGE}:${env.BUILD_NUMBER}")
               }
 
-            
+           } 
 
 
      stage('build docker image') {
@@ -82,8 +82,7 @@ environment {
                }
            }
          }
-        }
 
 
-
+}
  }
