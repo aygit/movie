@@ -30,22 +30,17 @@ environment {
 
 
          stage('assign environment') {
-             steps {
-
-         script {
-             if ( ENV_NAME == 'uat')   {
-                   env.DOCKER_REGISTRY = "registry.hub.docker.com"
-                   env.REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else if  (ENV_NAME == 'develop') {
-                   env.DOCKER_REGISTRY = "localhost:5000"
-                   env.REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }  else  (ENV_NAME =='master') {
-                      env.DOCKER_REGISTRY = 'registry.hub.docker.com'
-                   env.REGISTRY_CREDENTIAL = '617ee2e4-6f49-483e-9520-96e8c9e2752c'
-                   }
-                 }
+           when 
+                  {
+               branch  'develop'
+               environment name: 'docker_registry', value:'localhost:5000'
+              
                }
+              steps {
+                dockerImage = docker.build("$docker_registry/${IMAGE}:${env.BUILD_NUMBER}")
               }
+
+            
 
 
      stage('build docker image') {
